@@ -94,7 +94,7 @@ export default class App extends React.Component {
 		}, this.reportValues);
 	}
 
-	handleChange = (event) => {
+	handleChange = (event, field) => {
 		const input = event.currentTarget;
 		this.setState(({values: prevValues}) => {
 			const index = prevValues.findIndex(({id}) => id === input.closest('li').dataset.id);
@@ -103,10 +103,13 @@ export default class App extends React.Component {
 				return;
 			}
 			const id = prevValues[index].id;
+			const newValue = field === 'title'
+				? {id: id, value: {...prevValues[index].value, title: input.value}}
+				: {id: id, value: {...prevValues[index].value, url: input.value}}
 			return {
 				values: [
 					...prevValues.slice(0, index),
-					{id: id, value: input.value},
+					newValue,
 					...prevValues.slice(index + 1),
 				],
 				focus: false,
@@ -137,6 +140,8 @@ export default class App extends React.Component {
 			values,
 		} = this.state;
 
+		console.log('values', values)
+
 		return await extension.field.setValue(values.map(({value}) => value));
 	}
 }
@@ -148,7 +153,14 @@ const Handle = SortableHandle(() => (
 const SortableItem = SortableElement(({id, value, onChange, onDelete, autoFocus}) => (
 	<li className="item" data-id={id}>
 		<Handle />
-		<input className="cf-form-input" value={value} onChange={onChange} autoFocus={autoFocus} />
+		<div className="cf-form-field">
+			<label htmlFor={`title${id}`}>Title</label>
+			<input className="cf-form-input" id={`title${id}`} value={value.title} onChange={(event) => onChange(event, 'title')} autoFocus={autoFocus} />
+		</div>
+		<div className="cf-form-field">
+			<label htmlFor={`url${id}`}>URL</label>
+			<input className="cf-form-input" id={`url${id}`} value={value.url} onChange={(event) => onChange(event, 'url')} autoFocus={autoFocus} />
+		</div>
 		<button type="button" className="cf-btn-secondary delete-button" title="Delete" onClick={onDelete}>
 			&times;
 		</button>

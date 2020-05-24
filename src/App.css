@@ -16,7 +16,7 @@
 	margin-bottom: 0.25rem;
 }
 
-.item input {
+.item .cf-form-field {
 	flex: 1;
 }
 
