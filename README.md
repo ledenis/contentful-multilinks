@@ -1,13 +1,21 @@
-# contentful-multitext
+# contentful-multilinks
 
 This is an extension for the [Contentful](https://www.contentful.com/) authoring environment.
 
-It adds a new widget for "list of plain text entries" fields (that is, fields of type `Symbols`).
+It adds a new widget for JSON fields (that is, fields of type `Object`) which contains entries in the form:
+
+      [
+         {
+            "title": "Homepage",
+            "url": "https://example.com"
+         },
+         {
+            "title": "Google",
+            "url": "http://google.com"
+         }
+      ]
+
 This widget allows adding, editing, reordering, and deleting entries.
-
-It looks like this:
-
-![screenshot](https://i.imgur.com/23kQz7C.png)
 
 It's built with React and makes use of [React Sortable](https://github.com/clauderic/react-sortable-hoc).
 
@@ -21,7 +29,7 @@ This means all you have to do is point Contentful to this file:
 1. Space settings
 2. "Add extension" button
 3. Install from Github
-4. `https://github.com/tremby/contentful-multitext/blob/master/extension.json`
+4. `https://github.com/ledenis/contentful-multilinks/blob/master/extension.json`
 5. "Install" button
 
 ## Development
