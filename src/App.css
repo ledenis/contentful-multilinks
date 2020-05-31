@@ -14,9 +14,12 @@
 	position: relative;
 	margin-top: 0.25rem;
 	margin-bottom: 0.25rem;
+	padding: .875rem .25rem;
+	border: 1px solid #d3dce0;
+	box-shadow: 0 1px 3px rgba(0,0,0,.08);
 }
 
-.item .cf-form-field {
+.item .item-fields-column {
 	flex: 1;
 }
 

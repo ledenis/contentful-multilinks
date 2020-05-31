@@ -153,13 +153,15 @@ const Handle = SortableHandle(() => (
 const SortableItem = SortableElement(({id, value, onChange, onDelete, autoFocus}) => (
 	<li className="item" data-id={id}>
 		<Handle />
-		<div className="cf-form-field">
-			<label htmlFor={`title${id}`}>Title</label>
-			<input className="cf-form-input" id={`title${id}`} value={value.title} onChange={(event) => onChange(event, 'title')} autoFocus={autoFocus} />
-		</div>
-		<div className="cf-form-field">
-			<label htmlFor={`url${id}`}>URL</label>
-			<input className="cf-form-input" id={`url${id}`} value={value.url} onChange={(event) => onChange(event, 'url')} autoFocus={autoFocus} />
+		<div className="item-fields-column">
+			<div className="cf-form-field">
+				<label htmlFor={`title${id}`}>Title</label>
+				<input className="cf-form-input" id={`title${id}`} value={value.title} onChange={(event) => onChange(event, 'title')} autoFocus={autoFocus} />
+			</div>
+			<div className="cf-form-field">
+				<label htmlFor={`url${id}`}>URL</label>
+				<input className="cf-form-input" id={`url${id}`} value={value.url} onChange={(event) => onChange(event, 'url')} autoFocus={autoFocus} />
+			</div>
 		</div>
 		<button type="button" className="cf-btn-secondary delete-button" title="Delete" onClick={onDelete}>
 			&times;
